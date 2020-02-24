@@ -11,20 +11,40 @@ body {
 }
 
 h3 {
-    font-size: 5.5rem;
+    font-size: 5rem;
     color: rgb(60, 60, 60);
+    margin-bottom: 1vh;
+}
+
+h4 {
+    font-size: 2rem;
+}
+
+ul {
+    margin-bottom: 8vh;
 }
 
 ul > li {
-    font-size: 2.5rem;
+    font-size: 1.6rem;
+    line-height: 1.65;
+}
+
+.value-box, .console-message {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.values, .console-message {
+    text-align: center;
 }
 
 .console-message {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     padding: 15px;
     width: 50vw;
     min-height: 10vh;
     height: auto;
     border: 2px solid black;
-    text-align: center;
 }
