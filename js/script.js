@@ -8,7 +8,6 @@ window.addEventListener("gamepadconnected", function() {
 
     message = `${gamepad.id} <br> ${gamepad.buttons.length} buttons <br> ${gamepad.axes.length} axes`;
     document.querySelector('.console-message').innerHTML = message;
-
     connectivityInterval = setInterval(runGamepad, 100);
 });
 
@@ -25,26 +24,32 @@ function runGamepad() {
     let gamepadObject = navigator.getGamepads()[0];
     let buttons = gamepadObject.buttons;
     let axes = gamepadObject.axes;
+    // console.log(axes)
 
     let div = document.createElement('div');
     div.classList = 'values';
     
     for (let i = 0; i < buttons.length; i++) {
-        let p = document.createElement('p');
-
         // When button is pressed
         if (buttons[i].value > 0.4) {
+            let p = document.createElement('p');
             console.log(buttons[i]);        
             p.innerHTML = `Button ${i} pressed`;
+            div.appendChild(p);
+            
+            // Trigger button click events
+            keyHandler(i);
         }
-        div.appendChild(p);
     }
 
-    for (let j = 0; j < axes.length; j++) {
-        // When button is pressed
-        if (axes[j].value > 0.4) {
-            console.log(axes[j]);        
-            // p.innerHTML = `Button ${i} pressed`;
+    for (let j = 0; j < axes.length; j + 2) {
+        // When stick moves significantly away from center
+        if (axes[j] > 0.4 || axes[j] < -0.4 || axes[j + 1] > 0.4 || axes[j + 1] < -0.4) {
+            let p = document.createElement('p');
+            console.log(axes[j]);
+            let stick = j === 0 ? 'Left' : 'Right';
+            p.innerHTML = `Moved ${stick} Stick by (${axes[j]}, ${axes[j + 1]})`;
+            div.appendChild(p);
         }
     }
 
@@ -55,4 +60,17 @@ function runGamepad() {
     // buttonsData = buttons;
 
     document.querySelector('.value-box').replaceChild(div, document.querySelector('.values'));
+}
+
+const keyHandler = buttonIndex => {
+    switch (buttonIndex) {
+        // Open a new tab
+        case 8:
+            window.open('', '_blank');
+            break;
+        // Reload window
+        case 9:
+            location.reload();
+            break;
+    }
 }

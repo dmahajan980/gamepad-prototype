@@ -29,7 +29,15 @@ ul > li {
     line-height: 1.65;
 }
 
-.value-box, .console-message {
+.button-list {
+    margin-top: 3vh;
+}
+
+.button-list button {
+    margin: 5px;
+}
+
+.value-box, .console-message, .button-list {
     display: flex;
     flex-flow: column;
     align-items: center;
