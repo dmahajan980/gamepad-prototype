@@ -48,7 +48,7 @@ ul > li {
     text-align: center;
 }
 
-.console-message {
+.console-message, .values {
     font-size: 1.3rem;
     padding: 15px;
     width: 50vw;
@@ -56,3 +56,8 @@ ul > li {
     height: auto;
     border: 2px solid black;
 }
+
+/* .image {
+    background-image: url('../standard_gamepad.svg');
+    
+} */

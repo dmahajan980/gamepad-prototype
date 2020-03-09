@@ -6,9 +6,10 @@ window.addEventListener("gamepadconnected", function() {
     gamepad = navigator.getGamepads()[0];
     console.log(gamepad)
 
-    message = `${gamepad.id} <br> ${gamepad.buttons.length} buttons <br> ${gamepad.axes.length} axes`;
+    message = `${gamepad.id} <br> ${gamepad.buttons.length} Buttons | ${gamepad.axes.length} Axes`;
     document.querySelector('.console-message').innerHTML = message;
     connectivityInterval = setInterval(runGamepad, 100);
+    // document.querySelector('.image').style.display = 'none'
 });
 
 window.addEventListener("gamepaddisconnected", function(e) {
@@ -42,7 +43,7 @@ function runGamepad() {
         }
     }
 
-    for (let j = 0; j < axes.length; j + 2) {
+    for (let j = 0; j < axes.length;) {
         // When stick moves significantly away from center
         if (axes[j] > 0.4 || axes[j] < -0.4 || axes[j + 1] > 0.4 || axes[j + 1] < -0.4) {
             let p = document.createElement('p');
@@ -50,7 +51,28 @@ function runGamepad() {
             let stick = j === 0 ? 'Left' : 'Right';
             p.innerHTML = `Moved ${stick} Stick by (${axes[j]}, ${axes[j + 1]})`;
             div.appendChild(p);
+
+            // Left Stick
+            if (j === 0) {
+                // Scroll vertically
+                // if (axes[j + 1] > 0) {
+                //     window.scrollBy(0, 30);
+                // }
+                // else if (axes[j + 1] < 0) {
+                //     window.scrollBy(0, -30);
+                // }
+
+                // // Scroll horizontally
+                // if (axes[j] > 0) {
+                //     window.scrollBy(10, 0);
+                // }
+                // else if (axes[j] < 0) {
+                //     window.scrollBy(-10, 0);
+                // }
+                window.scrollBy(axes[j] * 50, axes[j + 1] * 50);
+            }
         }
+        j += 2;
     }
 
     /*
@@ -64,10 +86,21 @@ function runGamepad() {
 
 const keyHandler = buttonIndex => {
     switch (buttonIndex) {
-        // Open a new tab
-        case 8:
-            window.open('', '_blank');
+        // Move to previous page in history
+        case 6:
+            window.history.back();
             break;
+
+        // Move to previous page in history
+        case 7:
+            window.history.forward();
+            break;
+
+        // Open a new tab
+        // case 8:
+        //     window.open('', '_blank');
+        //     break;
+
         // Reload window
         case 9:
             location.reload();
