@@ -37,11 +37,20 @@ ul > li {
     margin: 5px;
 }
 
-.value-box, .console-message, .button-list {
-    display: flex;
+.value-box, .console-message, .button-list, .hyperlinks,
+.checkboxes, .radios, .dropdowns {
     flex-flow: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+
+.value-box {
+    display: none;
+}
+
+.console-message, .button-list {
+    display: flex;
 }
 
 .values, .console-message {
@@ -50,14 +59,51 @@ ul > li {
 
 .console-message, .values {
     font-size: 1.3rem;
-    padding: 15px;
     width: 50vw;
     min-height: 10vh;
     height: auto;
     border: 2px solid black;
 }
 
-/* .image {
-    background-image: url('../standard_gamepad.svg');
-    
-} */
+a {
+    margin: 5px 15px;
+}
+
+input {
+    margin-left: 25px;
+}
+
+.random-text {
+    margin-top: 0;
+}
+
+div {
+    border-radius: 150px;
+    padding: 25px 40px;
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 1.05rem;
+    background-color: #dfdfde;
+    border: 2px solid black;
+    border-radius: 50px;
+}
+
+a, label {
+    font-size: 1.25rem;
+}
+
+select {
+    padding: 5px 15px;
+    margin-left: 10px;
+    font-size: 1.05rem;
+    background-color: #dfdfde;
+    border: 2px solid black;
+}
+
+.random-text {
+    padding: 0 35px;
+    text-align: justify;
+    font-size: 1.25rem;
+}

@@ -9,7 +9,7 @@ window.addEventListener("gamepadconnected", function() {
     message = `${gamepad.id} <br> ${gamepad.buttons.length} Buttons | ${gamepad.axes.length} Axes`;
     document.querySelector('.console-message').innerHTML = message;
     connectivityInterval = setInterval(runGamepad, 100);
-    // document.querySelector('.image').style.display = 'none'
+    document.querySelector('.value-box').style.display = 'flex'
 });
 
 window.addEventListener("gamepaddisconnected", function(e) {
@@ -17,6 +17,7 @@ window.addEventListener("gamepaddisconnected", function(e) {
         clearInterval(connectivityInterval);
         message = `Gamepad disconnected`;
         document.querySelector('.console-message').innerHTML = message;
+        document.querySelector('.value-box').style.display = 'none'
     }
 });
 
@@ -54,22 +55,7 @@ function runGamepad() {
 
             // Left Stick
             if (j === 0) {
-                // Scroll vertically
-                // if (axes[j + 1] > 0) {
-                //     window.scrollBy(0, 30);
-                // }
-                // else if (axes[j + 1] < 0) {
-                //     window.scrollBy(0, -30);
-                // }
-
-                // // Scroll horizontally
-                // if (axes[j] > 0) {
-                //     window.scrollBy(10, 0);
-                // }
-                // else if (axes[j] < 0) {
-                //     window.scrollBy(-10, 0);
-                // }
-                window.scrollBy(axes[j] * 50, axes[j + 1] * 50);
+                window.scrollBy(axes[j] * 80, axes[j + 1] * 80);
             }
         }
         j += 2;
@@ -86,6 +72,21 @@ function runGamepad() {
 
 const keyHandler = buttonIndex => {
     switch (buttonIndex) {
+        // Click element
+        case 0: 
+            clickEventHandler();
+            break;
+
+        // Tab to prev element
+        case 2:
+            focusElement(prevFocus);
+            break;
+
+        // Tab to next element
+        case 3:
+            focusElement(nextFocus);
+            break;
+        
         // Move to previous page in history
         case 6:
             window.history.back();
@@ -98,34 +99,104 @@ const keyHandler = buttonIndex => {
 
         // Open a new tab
         // case 8:
-        //     window.open('', '_blank');
+        //     setTimeout(window.open(), 500);
         //     break;
 
         // Reload window
         case 9:
             location.reload();
             break;
+
+        // Up arrow key
+        case 12:
+        case 14:
+            arrowKeyEventHandler(upKey);
+            break;
+
+        // Down arrow key
+        case 13:
+        case 15:
+            arrowKeyEventHandler(downKey);
+            break;
     }
 }
 
-const focusNextElement = () => {
+const focusElement = action => {
     //add all elements we want to include in our selection
-    var focussableElements = 'a:not([disabled]), button:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
-    if (document.activeElement && document.activeElement.form) {
-        var focussable = Array.prototype.filter.call(document.activeElement.form.querySelectorAll(focussableElements),
-            function (element) {
-                //check for visibility while always include the current activeElement 
-                return element.offsetWidth > 0 || element.offsetHeight > 0 || element === document.activeElement
-            });
-        var index = focussable.indexOf(document.activeElement);
-        if (index > -1) {
-            var nextElement = focussable[index + 1] || focussable[0];
-            nextElement.focus();
+    let focussableElementsFilter = 'a:not([disabled]), button:not([disabled]), input:not([disabled]), select, [tabindex]:not([disabled]):not([tabindex="-1"])';
+    let focussable = Array.prototype.filter.call(document.querySelectorAll(focussableElementsFilter),
+        function (element) {
+            //check for visibility while always include the current activeElement 
+            return element.offsetWidth > 0 || element.offsetHeight > 0 || element === document.activeElement
+        });
+
+    console.log(focussable.length)
+
+    let index = focussable.indexOf(document.activeElement);
+    action(index, focussable);
+    
+    if (document.activeElement === document.querySelector('body')) {
+        focussable[0].focus();
+    }
+}
+
+const nextFocus = (index, focussable) => {
+    if (index > -1) {
+        let nextElement = focussable[index + 1] || focussable[0];
+        nextElement.focus();
+    }
+}
+
+const prevFocus = (index, focussable) => {
+    if (index > -1) {
+        let prevElement = focussable[index - 1] || focussable[focussable.length - 1];
+        prevElement.focus();
+    }
+}
+
+const clickEventHandler = () => {
+    // SELECT Element
+    if (document.activeElement.nodeName === 'SELECT') {
+        // let initialPosition = document.activeElement.style.position;
+        // document.activeElement.style.position = 'relative';
+        // document.activeElement.style.top = 0;
+        let length = 0;
+        document.activeElement.childNodes.forEach(node => {
+            if (node.nodeName === 'OPTION') { 
+                length++;
+            }
+        });
+        if ($(document.activeElement).attr('size') === '1' || !$(document.activeElement).attr('size')) {
+            $(document.activeElement).attr('size', length);
+        }
+        else {
+            $(document.activeElement).attr('size', 1);
         }
     }
+    else {
+        document.activeElement.click();
+        console.log(document.activeElement)
+    }
 }
 
-// {
-//     let focussableElements = 'a:not([disabled]), button:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
+const arrowKeyEventHandler = keyFunction => {
+    if (document.activeElement.nodeName === 'SELECT') {
+        console.log('works')
+        let activeElement = document.activeElement.nodeName.toLowerCase();
+        keyFunction(activeElement);
+    }
+}
 
-// }
+const upKey = activeElement => {
+    let prevElement = $(`${activeElement} option:selected`).prev('option');
+    if (prevElement.length > 0) {
+        $(`${activeElement} option:selected`).removeAttr('selected').prev('option').attr('selected', 'selected');
+    }
+}
+
+const downKey = activeElement => {
+    let nextElement = $(`${activeElement} option:selected`).next('option');
+    if (nextElement.length > 0) {
+        $(`${activeElement} option:selected`).removeAttr('selected').next('option').attr('selected', 'selected');
+    }
+}
