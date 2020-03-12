@@ -17,3 +17,19 @@ In this prototype, the ***HTML5 Gamepad API*** is used to establish connectivity
 
 ## Controls
 
+<p align="center">
+  <img src="./standard_gamepad.svg" height=400>
+</p>
+
+Below is the list of buttons with their corresponding functionalities specified along:  
+(_Please refer to the above diagram for the below mentioned buttons and axes_)
+
+| Keys | Functionality | Analogous Keyboard Keys |
+| :---: | :---: | :---: |
+| Button `0` | Select or Click | `Enter` |
+| Button `1` | Back or Cancel | `Esc` |
+
+| Button `3` | Move to next focusable element | `Tab` |
+| Button `2` | Move to previous focusable element | `Shift` + `Tab` |
+| :---: | :---: | :---: |
+
