@@ -31,8 +31,8 @@ Below is the list of buttons with their corresponding functionalities specified 
 | `Button 3` | Move the focus to next focusable element | `Tab` |
 | `Button 2` | Move the focus to previous focusable element | `Shift` + `Tab` |
 | `Button 9` | Reload the webpage | `Ctrl` + `R` |
-| `Button 12` or `Button 14` or <br> `Axes 3` _Negative_ <br> (`Right Joystick` _Up_) | Move to previous option in the dropdown or select field | `↑` |
-| `Button 13` or `Button 15` or <br> `Axes 3` _Positive_ <br> (`Right Joystick` _Down_) | Move to next option in the dropdown or select field | `↓` |
+| `Button 12` or <br> `Button 14` or <br> `Axes 3` _Negative_ <br> (`Right Joystick` _Up_) | Move to previous option in the dropdown or select field | `↑` |
+| `Button 13` or <br> `Button 15` or <br> `Axes 3` _Positive_ <br> (`Right Joystick` _Down_) | Move to next option in the dropdown or select field | `↓` |
 | `Left Joystick` _up_ and _down_ <br> or `Axes 0` | Scroll vertically across the webpage | `↑` and `↓` |
 | `Left Joystick` _left_ and _right_ <br> or `Axes 1` | Scroll horizontally across the webpage | `←` and `→` |
 | `Button 6` | Move to previous page in history | `Alt` + `←` |
