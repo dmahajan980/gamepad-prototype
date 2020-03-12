@@ -1,6 +1,6 @@
 # Gamepad Prototype
 
-This repository contains the Gamepad Navigation Prototype, a demo for experiencing the browser and webpage navigation using a standard game controller such as Xbox gamepad.
+This repository contains the Gamepad Navigation Prototype, a demo for experiencing the browser and webpage navigation using a standard game controller such as Xbox gamepad. This project stands as a ***low-level prototype*** for the main project: **Using a Game Controller as a Navigation Aid**. I have listed a few details about the main project as well, below in the **Technologies Used** section.
 
 ## Technologies Used
 
@@ -26,10 +26,14 @@ Below is the list of buttons with their corresponding functionalities specified 
 
 | Keys | Functionality | Analogous Keyboard Keys |
 | :---: | :---: | :---: |
-| Button `0` | Select or Click | `Enter` |
-| Button `1` | Back or Cancel | `Esc` |
-
-| Button `3` | Move to next focusable element | `Tab` |
-| Button `2` | Move to previous focusable element | `Shift` + `Tab` |
-| :---: | :---: | :---: |
-
+| `Button 0` | Select or Click on the focussed element | `Enter` |
+| `Button 1` | Back or Cancel | `Esc` |
+| `Button 3` | Move to next focusable element | `Tab` |
+| `Button 2` | Move to previous focusable element | `Shift` + `Tab` |
+| `Button 9` | Reload the webpage | `Ctrl` + `R` |
+| `Button 12` or `Button 14` or <br> `Axes 3` _Negative_ (`Right Joystick` _Up_) | Move to previous option in the dropdown or select field | `↑` |
+| `Button 13` or `Button 15` or <br> `Axes 3` _Positive_ (`Right Joystick` _Down_) | Move to next option in the dropdown or select field | `↓` |
+| `Left Joystick` _up_ and _down_ <br> or `Axes 0` | Scroll vertically across the webpage | `↑` and `↓` |
+| `Left Joystick` _left_ and _right_ <br> or `Axes 1` | Scroll horizontally across the webpage | `←` and `→` |
+| `Button 6` | Move to previous page in history | `Alt` + `←` |
+| `Button 7` | Move to next page in history | `Alt` + `→` |
