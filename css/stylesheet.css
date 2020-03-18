@@ -37,7 +37,7 @@ ul > li {
     margin: 5px;
 }
 
-.value-box, .console-message, .button-list, .hyperlinks,
+.value-box, .status-message, .button-list, .hyperlinks,
 .checkboxes, .radios, .dropdowns {
     flex-flow: column;
     align-items: center;
@@ -49,15 +49,15 @@ ul > li {
     display: none;
 }
 
-.console-message, .button-list {
+.status-message, .button-list {
     display: flex;
 }
 
-.values, .console-message {
+.values {
     text-align: center;
 }
 
-.console-message, .values {
+.status-message, .values {
     font-size: 1.3rem;
     width: 50vw;
     min-height: 10vh;
