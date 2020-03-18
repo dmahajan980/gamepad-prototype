@@ -26,7 +26,7 @@ window.addEventListener("gamepaddisconnected", function(e) {
 
         // Inject connectivity status to the webpage
         connectivityStatus = `Gamepad disconnected`;
-        document.querySelector('.status-message').innerHTML = message;
+        document.querySelector('.status-message').innerHTML = connectivityStatus;
         document.querySelector('.value-box').style.display = 'none';
     }
 });
