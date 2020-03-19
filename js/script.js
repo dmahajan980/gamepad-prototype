@@ -110,15 +110,15 @@ const keyHandler = buttonIndex => {
             clickEventHandler();
             break;
 
-        // When buttons[2] is pressed
-        case 2:
+        // When buttons[4] is pressed
+        case 4:
 
             // Tab to prev element
             focusElement(prevFocus);
             break;
 
-        // When buttons[3] is pressed
-        case 3:
+        // When buttons[5] is pressed
+        case 5:
 
             // Tab to next element
             focusElement(nextFocus);
